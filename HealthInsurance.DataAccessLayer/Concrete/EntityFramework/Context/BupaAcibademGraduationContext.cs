@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 #nullable disable
 
-namespace HealthInsurance.DataAccessLayer.Concrete.Context
+namespace HealthInsurance.DataAccessLayer.Concrete.EntityFramework.Context
 {
     public partial class BupaAcibademGraduationContext : DbContext
     {
