@@ -5,8 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Abstract\" />
-    <Folder Include="Concrete\" />
+    <ProjectReference Include="..\HealthInsurance.DataAccessLayer\HealthInsurance.DataAccessLayer.csproj" />
+    <ProjectReference Include="..\HealthInsurance.InterfaceLayer\HealthInsurance.InterfaceLayer.csproj" />
   </ItemGroup>
 
 </Project>
