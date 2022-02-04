@@ -6,13 +6,11 @@ using HealthInsurance.EntityLayer.Concrete.Bases;
 
 namespace HealthInsurance.EntityLayer.Concrete.Dtos
 {
-    public partial class Card : Dto
+    public partial class DtoOrder : Dto
     {
         public int Id { get; set; }
         public int? CustomerId { get; set; }
-        public string CardHolderFirstNameLastName { get; set; }
-        public string CreditCardNumber { get; set; }
-        public string ValidThru { get; set; }
-        public string CardValidationValue { get; set; }
+        public int? ProductId { get; set; }
+        public string OrderDate { get; set; }
     }
 }

@@ -6,7 +6,7 @@ using HealthInsurance.EntityLayer.Concrete.Bases;
 
 namespace HealthInsurance.EntityLayer.Concrete.Dtos
 {
-    public partial class Customer : Dto
+    public partial class DtoCustomer : Dto
     {
         public int Id { get; set; }
         public string FirstName { get; set; }
