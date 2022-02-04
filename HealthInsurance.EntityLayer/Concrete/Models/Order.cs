@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using HealthInsurance.EntityLayer.Concrete.Bases;
 
 #nullable disable
 
 namespace HealthInsurance.EntityLayer.Concrete.Models
 {
-    public partial class Order
+    public partial class Order : Entity
     {
         public int Id { get; set; }
         public int? CustomerId { get; set; }

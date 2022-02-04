@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using HealthInsurance.EntityLayer.Concrete.Bases;
 
 #nullable disable
 
 namespace HealthInsurance.EntityLayer.Concrete.Models
 {
-    public partial class Card
+    public partial class Card : Entity
     {
         public Card()
         {
