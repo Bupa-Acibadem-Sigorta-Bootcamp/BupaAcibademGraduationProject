@@ -10,9 +10,9 @@ using HealthInsurance.InterfaceLayer.Abstract.IModelService;
 
 namespace HealthInsurance.BusinessLogicLayer.Concrete.BusinessLogicManagers
 {
-    public class CorporateCostemerManager : BusinessLogicBase<CorporateCostemer, DtoCorporateCostemer>, ICorporateCostemerService
+    public class CorporateCustomerManager : BusinessLogicBase<CorporateCustomer, DtoCorporateCustomer>, ICorporateCustomerService
     {
-        public CorporateCostemerManager(IServiceProvider service) : base(service)
+        public CorporateCustomerManager(IServiceProvider service) : base(service)
         {
         }
     }

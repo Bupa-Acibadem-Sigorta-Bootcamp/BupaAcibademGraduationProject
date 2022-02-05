@@ -13,9 +13,9 @@ namespace HealthInsurance.WebApiLayer.Controllers.Controller
 {
     [Route("api/[controller]s")]
     [ApiController]
-    public class CorporateCostemerController :BasesController<ICorporateCostemerService, CorporateCostemer, DtoCorporateCostemer>
+    public class CorporateCustomerController :BasesController<ICorporateCustomerService, CorporateCustomer, DtoCorporateCustomer>
     {
-        public CorporateCostemerController(ICorporateCostemerService service) : base(service)
+        public CorporateCustomerController(ICorporateCustomerService service) : base(service)
         {
         }
     }

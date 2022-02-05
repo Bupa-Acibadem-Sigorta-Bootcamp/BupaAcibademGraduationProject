@@ -9,7 +9,7 @@ using HealthInsurance.InterfaceLayer.Abstract.IGenericService;
 
 namespace HealthInsurance.InterfaceLayer.Abstract.IModelService
 {
-    public interface ICorporateCostemerService : IGenericService<CorporateCostemer, DtoCorporateCostemer>
+    public interface ICorporateCustomerService : IGenericService<CorporateCustomer, DtoCorporateCustomer>
     {
     }
 

@@ -6,7 +6,7 @@ using HealthInsurance.EntityLayer.Concrete.Bases;
 
 namespace HealthInsurance.EntityLayer.Concrete.Models
 {
-    public partial class CorporateCostemer : Entity
+    public partial class CorporateCustomer : Entity
     {
         public int Id { get; set; }
         public int? CustomerId { get; set; }

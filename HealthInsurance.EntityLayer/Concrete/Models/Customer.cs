@@ -11,7 +11,7 @@ namespace HealthInsurance.EntityLayer.Concrete.Models
         public Customer()
         {
             Cards = new HashSet<Card>();
-            CorporateCostemers = new HashSet<CorporateCostemer>();
+            CorporateCostemers = new HashSet<CorporateCustomer>();
             IndividualCustomers = new HashSet<IndividualCustomer>();
             Orders = new HashSet<Order>();
             Payments = new HashSet<Payment>();
@@ -26,7 +26,7 @@ namespace HealthInsurance.EntityLayer.Concrete.Models
         public string Email { get; set; }
 
         public virtual ICollection<Card> Cards { get; set; }
-        public virtual ICollection<CorporateCostemer> CorporateCostemers { get; set; }
+        public virtual ICollection<CorporateCustomer> CorporateCostemers { get; set; }
         public virtual ICollection<IndividualCustomer> IndividualCustomers { get; set; }
         public virtual ICollection<Order> Orders { get; set; }
         public virtual ICollection<Payment> Payments { get; set; }

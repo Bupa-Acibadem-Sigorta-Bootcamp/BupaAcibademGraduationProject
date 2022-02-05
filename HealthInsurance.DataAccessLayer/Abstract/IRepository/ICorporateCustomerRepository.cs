@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HealthInsurance.DataAccessLayer.Abstract.IRepository
 {
-    public interface ICorporateCostemerRepository
+    public interface ICorporateCustomerRepository
     {
     }
 }
