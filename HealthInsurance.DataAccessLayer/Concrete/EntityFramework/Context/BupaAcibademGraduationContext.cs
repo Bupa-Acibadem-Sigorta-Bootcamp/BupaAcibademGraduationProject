@@ -2,6 +2,7 @@
 using HealthInsurance.EntityLayer.Concrete.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.Extensions.Configuration;
 
 #nullable disable
 
@@ -9,13 +10,16 @@ namespace HealthInsurance.DataAccessLayer.Concrete.EntityFramework.Context
 {
     public partial class BupaAcibademGraduationContext : DbContext
     {
-        public BupaAcibademGraduationContext()
+        private readonly IConfiguration configuration;
+        public BupaAcibademGraduationContext(IConfiguration configuration)
         {
+            this.configuration = configuration;
         }
 
-        public BupaAcibademGraduationContext(DbContextOptions<BupaAcibademGraduationContext> options)
+        public BupaAcibademGraduationContext(DbContextOptions<BupaAcibademGraduationContext> options, IConfiguration configuration)
             : base(options)
         {
+            this.configuration = configuration;
         }
 
         public virtual DbSet<Card> Cards { get; set; }
@@ -28,10 +32,7 @@ namespace HealthInsurance.DataAccessLayer.Concrete.EntityFramework.Context
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            if (!optionsBuilder.IsConfigured)
-            {
-                optionsBuilder.UseSqlServer("Server=YAHYAERDOGAN\\SQLEXPRESS;Database=BupaAcibademGraduation;Trusted_Connection=True;");
-            }
+            optionsBuilder.UseLazyLoadingProxies(useLazyLoadingProxies: true);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

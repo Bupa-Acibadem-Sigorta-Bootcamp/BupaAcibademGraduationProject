@@ -11,6 +11,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using HealthInsurance.BusinessLogicLayer.Concrete.BusinessLogicManagers;
+using HealthInsurance.DataAccessLayer.Abstract.IRepository;
+using HealthInsurance.DataAccessLayer.Abstract.IUnitOfWorkRepository;
+using HealthInsurance.DataAccessLayer.Concrete.EntityFramework.Context;
+using HealthInsurance.DataAccessLayer.Concrete.EntityFramework.EfRepository;
+using HealthInsurance.DataAccessLayer.Concrete.EntityFramework.EfUnitOfWorkRepository;
+using HealthInsurance.InterfaceLayer.Abstract.IModelService;
+using Microsoft.EntityFrameworkCore;
 
 namespace HealthInsurance.WebApiLayer
 {
@@ -26,6 +34,33 @@ namespace HealthInsurance.WebApiLayer
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            #region Dependency Injections
+
+            #region DbContext
+            services.AddScoped<DbContext, BupaAcibademGraduationContext>();
+            services.AddDbContext<BupaAcibademGraduationContext>(DbContextOptionsBuilder =>
+            {
+                DbContextOptionsBuilder.UseSqlServer(Configuration.GetConnectionString("SqlServer"),
+                    SqlServerDbContextOptionsBuilder =>
+                    {
+                        SqlServerDbContextOptionsBuilder.MigrationsAssembly("Northwind.DataAccessLayer");
+                    });
+            });
+            #endregion
+
+            #region ServiceSection
+            services.AddScoped<IProductService, ProductManager>();
+            #endregion
+
+            #region RepositorySection
+            services.AddScoped<IProductRepository, EfProductRepository>();
+            #endregion
+
+            #region UnitOfWork
+            services.AddScoped<IUnitOfWorkRepository, EfUnitOfWorkRepository>();
+            #endregion
+
+            #endregion
 
             services.AddControllers();
             services.AddSwaggerGen(c =>

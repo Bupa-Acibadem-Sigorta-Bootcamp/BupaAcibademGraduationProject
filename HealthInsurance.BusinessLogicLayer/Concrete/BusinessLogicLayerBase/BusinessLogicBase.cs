@@ -4,10 +4,13 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using HealthInsurance.BusinessLogicLayer.Concrete.MapperConfiguration;
+using HealthInsurance.BusinessLogicLayer.Concrete.ResultMessages;
 using HealthInsurance.DataAccessLayer.Abstract.IGenericRepository;
 using HealthInsurance.DataAccessLayer.Abstract.IUnitOfWorkRepository;
 using HealthInsurance.EntityLayer.Abstract.IResults;
 using HealthInsurance.EntityLayer.Concrete.Bases;
+using HealthInsurance.EntityLayer.Concrete.Results;
 using HealthInsurance.InterfaceLayer.Abstract.IGenericService;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -32,9 +35,25 @@ namespace HealthInsurance.BusinessLogicLayer.Concrete.BusinessLogicLayerBase
         }
 
         #endregion
-        public IResult Add(TDto entity, bool saveChanges = true)
+        public IDataResult<TDto> Add(TDto entity, bool saveChanges = true)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var resolvedResult = " ";
+                var TResult = repository.Add(ObjectMapper.Mapper.Map<T>(entity));
+                resolvedResult = string.Join(',', TResult.GetType().GetProperties()
+                    .Select(x => $"-{x.Name}: {x.GetValue(TResult) ?? ""}-"));
+                if (saveChanges)
+                {
+                    Save();
+                }
+
+                return new SuccessDataResult<TDto>(ObjectMapper.Mapper.Map<T, TDto>(TResult),Messages.ProductAdded);
+            }
+            catch (Exception)
+            {
+                return new ErrorDataResult<TDto>(Messages.ProductAddingWrong);
+            }
         }
 
         public IDataResult<Task<TDto>> AddAsync(TDto entity)
@@ -84,7 +103,16 @@ namespace HealthInsurance.BusinessLogicLayer.Concrete.BusinessLogicLayerBase
 
         public IDataResult<List<TDto>> GetAll()
         {
-            throw new NotImplementedException();
+            try
+            {
+                List<T> getAllList = repository.GetAll();
+                var dtoGetAllList = getAllList.Select(x => ObjectMapper.Mapper.Map<TDto>(x)).ToList();
+                return new SuccessDataResult<List<TDto>>(dtoGetAllList,Messages.ProductsListed);
+            }
+            catch (Exception)
+            {
+                return new ErrorDataResult<List<TDto>>(Messages.ProductsNotListed);
+            }
         }
 
         public IDataResult<List<TDto>> GetAll(Expression<Func<T, bool>> expression)
@@ -94,7 +122,7 @@ namespace HealthInsurance.BusinessLogicLayer.Concrete.BusinessLogicLayerBase
 
         public void Save()
         {
-            throw new NotImplementedException();
+            unitOfWork.SaveChanges();
         }
     }
 }

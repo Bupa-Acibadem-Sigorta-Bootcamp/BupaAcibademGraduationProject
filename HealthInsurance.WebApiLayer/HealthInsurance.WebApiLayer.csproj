@@ -9,7 +9,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\HealthInsurance.BusinessLogicLayer\HealthInsurance.BusinessLogicLayer.csproj" />
     <ProjectReference Include="..\HealthInsurance.DataAccessLayer\HealthInsurance.DataAccessLayer.csproj" />
+    <ProjectReference Include="..\HealthInsurance.InterfaceLayer\HealthInsurance.InterfaceLayer.csproj" />
   </ItemGroup>
 
 </Project>

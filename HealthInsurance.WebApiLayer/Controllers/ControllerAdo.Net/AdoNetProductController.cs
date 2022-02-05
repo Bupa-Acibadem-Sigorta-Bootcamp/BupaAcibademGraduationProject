@@ -11,10 +11,12 @@ namespace HealthInsurance.WebApiLayer.Controllers
 {
     [Route("api/[controller]s")]
     [ApiController]
-    public class ProductController : ControllerBase
+    public class AdoNetProductController : ControllerBase
     {
         readonly AdoNetProductRepository adoNetProductRepository = new AdoNetProductRepository();
 
+        #region Ado.Net Endpoints
+        /*
         [HttpGet("GetAll")]
         public IActionResult GetAll()
         {
@@ -23,6 +25,7 @@ namespace HealthInsurance.WebApiLayer.Controllers
             {
                 return Ok(result);
             }
+
             return BadRequest(result);
         }
 
@@ -36,5 +39,7 @@ namespace HealthInsurance.WebApiLayer.Controllers
             });
             return Ok("Ürün Eklendi");
         }
+        */
+        #endregion
     }
 }

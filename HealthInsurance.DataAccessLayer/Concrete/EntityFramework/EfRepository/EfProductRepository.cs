@@ -9,9 +9,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace HealthInsurance.DataAccessLayer.Concrete.EntityFramework.EfRepository
 {
-    public class IProductRepository : EfGenericRepository<Product>, Abstract.IRepository.IProductRepository
+    public class EfProductRepository : EfGenericRepository<Product>, Abstract.IRepository.IProductRepository
     {
-        public IProductRepository(DbContext context) : base(context)
+        public EfProductRepository(DbContext context) : base(context)
         {
         }
     }
