@@ -49,10 +49,22 @@ namespace HealthInsurance.WebApiLayer
             #endregion
 
             #region ServiceSection
+            services.AddScoped<ICardService, CardManager>();
+            services.AddScoped<ICorporateCostemerService, CorporateCostemerManager>();
+            services.AddScoped<ICustomerService, CustomerManager>();
+            services.AddScoped<IIndividualCustomerService, IndividualCustomerManager>();
+            services.AddScoped<IOrderService, OrderManager>();
+            services.AddScoped<IPaymentService, PaymentManager>();
             services.AddScoped<IProductService, ProductManager>();
             #endregion
 
             #region RepositorySection
+            services.AddScoped<ICardRepository, EfCardRepository>();
+            services.AddScoped<ICorporateCostemerRepository, EfCorporateCostemerRepository>();
+            services.AddScoped<ICustomerRepository, EfCustomerRepository>();
+            services.AddScoped<IIndividualCustomerRepository, EfIndividualCustomerRepository>();
+            services.AddScoped<IOrderRepository, EfOrderRepository>();
+            services.AddScoped<IPaymentRepository, EfPaymentRepository>();
             services.AddScoped<IProductRepository, EfProductRepository>();
             #endregion
 
