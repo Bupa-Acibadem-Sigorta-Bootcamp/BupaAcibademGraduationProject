@@ -23,7 +23,7 @@ namespace HealthInsurance.DataAccessLayer.Concrete.EntityFramework.Context
         }
 
         public virtual DbSet<Card> Cards { get; set; }
-        public virtual DbSet<CorporateCustomer> CorporateCostemers { get; set; }
+        public virtual DbSet<CorporateCustomer> CorporateCustomers { get; set; }
         public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<IndividualCustomer> IndividualCustomers { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
@@ -62,9 +62,9 @@ namespace HealthInsurance.DataAccessLayer.Concrete.EntityFramework.Context
                 entity.Property(e => e.TaxNumber).HasMaxLength(11);
 
                 entity.HasOne(d => d.Customer)
-                    .WithMany(p => p.CorporateCostemers)
+                    .WithMany(p => p.CorporateCustomers)
                     .HasForeignKey(d => d.CustomerId)
-                    .HasConstraintName("FK_CorporateCostemers_Customers");
+                    .HasConstraintName("FK_CorporateCustomers_Customers");
             });
 
             modelBuilder.Entity<Customer>(entity =>
