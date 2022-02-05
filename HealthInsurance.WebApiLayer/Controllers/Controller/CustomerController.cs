@@ -11,7 +11,7 @@ using HealthInsurance.WebApiLayer.Controllers.ControllerBases;
 
 namespace HealthInsurance.WebApiLayer.Controllers.Controller
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]s")]
     [ApiController]
     public class CustomerController : BasesController<ICustomerService, Customer, DtoCustomer>
     {
