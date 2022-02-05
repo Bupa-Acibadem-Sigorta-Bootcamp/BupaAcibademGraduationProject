@@ -13,5 +13,9 @@ namespace HealthInsurance.BusinessLogicLayer.Concrete.ResultMessages
         public static string ProductAddingWrong = "Ürün Eklenemedi!";
         public static string ProductsListed = "Ürünler Listelendi.";
         public static string ProductsNotListed = "Ürünler Listelenemedi!";
+        public static string ProductDeleted = "Ürün Silindi.";
+        public static string ProductNotDeleted = "Ürün Silinemedi!";
+        public static string ProductListedById = "Ürün Id ile Listelendi.";
+        public static string ProductNotListedById = "Ürün Id ile Listelenemedi!";
     }
 }

@@ -48,7 +48,7 @@ namespace HealthInsurance.BusinessLogicLayer.Concrete.BusinessLogicLayerBase
                     Save();
                 }
 
-                return new SuccessDataResult<TDto>(ObjectMapper.Mapper.Map<T, TDto>(TResult),Messages.ProductAdded);
+                return new SuccessDataResult<TDto>(ObjectMapper.Mapper.Map<T, TDto>(TResult), Messages.ProductAdded);
             }
             catch (Exception)
             {
@@ -63,7 +63,16 @@ namespace HealthInsurance.BusinessLogicLayer.Concrete.BusinessLogicLayerBase
 
         public IDataResult<bool> DeleteById(int id, bool saveChanges = true)
         {
-            throw new NotImplementedException();
+            try
+            {
+                repository.Delete(id);
+                if (saveChanges) Save();
+                return new SuccessDataResult<bool>(true, Messages.ProductDeleted);
+            }
+            catch (Exception)
+            {
+                return new ErrorDataResult<bool>(false, Messages.ProductNotDeleted!);
+            }
         }
 
         public IDataResult<Task<bool>> DeleteByIdAsync(int id)
@@ -93,7 +102,14 @@ namespace HealthInsurance.BusinessLogicLayer.Concrete.BusinessLogicLayerBase
 
         public IDataResult<TDto> Find(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                return new SuccessDataResult<TDto>(ObjectMapper.Mapper.Map<T, TDto>(repository.Find(id)),Messages.ProductListedById);
+            }
+            catch (Exception)
+            {
+                return new ErrorDataResult<TDto>(null, Messages.ProductNotListedById);
+            }
         }
 
         public IDataResult<IQueryable<T>> GetIQueryable()
@@ -107,7 +123,7 @@ namespace HealthInsurance.BusinessLogicLayer.Concrete.BusinessLogicLayerBase
             {
                 List<T> getAllList = repository.GetAll();
                 var dtoGetAllList = getAllList.Select(x => ObjectMapper.Mapper.Map<TDto>(x)).ToList();
-                return new SuccessDataResult<List<TDto>>(dtoGetAllList,Messages.ProductsListed);
+                return new SuccessDataResult<List<TDto>>(dtoGetAllList, Messages.ProductsListed);
             }
             catch (Exception)
             {

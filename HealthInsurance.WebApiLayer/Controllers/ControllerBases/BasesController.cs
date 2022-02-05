@@ -36,6 +36,29 @@ namespace HealthInsurance.WebApiLayer.Controllers.ControllerBases
             return BadRequest(result);
         }
 
+        [HttpDelete("DeleteById")]
+        public IActionResult DeleteById(int id)
+        {
+            var result = _service.DeleteById(id);
+
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
+        [HttpGet("Find")]
+        public IActionResult Find(int id)
+        {
+            var result = _service.Find(id);
+
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
 
         [HttpGet("GetAll")]
         public IActionResult GetAll()

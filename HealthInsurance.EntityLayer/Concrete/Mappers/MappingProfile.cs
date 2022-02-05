@@ -18,6 +18,7 @@ namespace HealthInsurance.EntityLayer.Concrete.Mappers
             CreateMap<CorporateCustomer, DtoCorporateCustomer>().ReverseMap();
             CreateMap<Customer, DtoCustomer>().ReverseMap();
             CreateMap<IndividualCustomer, DtoIndividualCustomer>().ReverseMap();
+            CreateMap<Order, DtoOrder>().ReverseMap();
             CreateMap<Payment, DtoPayment>().ReverseMap();
             CreateMap<Product, DtoProduct>().ReverseMap();
             #endregion
