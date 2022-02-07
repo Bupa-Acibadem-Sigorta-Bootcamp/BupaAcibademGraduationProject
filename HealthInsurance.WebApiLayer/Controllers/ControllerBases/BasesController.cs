@@ -37,9 +37,9 @@ namespace HealthInsurance.WebApiLayer.Controllers.ControllerBases
         }
 
         [HttpPost("AddAsync")]
-        public IActionResult AddAsync(TDto dto)
+        public async Task<IActionResult> AddAsync(TDto dto)
         {
-            var result =  _service.AddAsync(dto);
+            var result = await _service.AddAsync(dto);
 
             if (result.Success)
             {
@@ -74,6 +74,19 @@ namespace HealthInsurance.WebApiLayer.Controllers.ControllerBases
 
         [HttpGet("GetAll")]
         public IActionResult GetAll()
+        {
+            var result = _service.GetAll();
+
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
+        //TODO : Tipin belli olduğu yerde kullanılabilir.
+        [HttpGet("GetAllExpression")]
+        public IActionResult GetAllAsycn()
         {
             var result = _service.GetAll();
 

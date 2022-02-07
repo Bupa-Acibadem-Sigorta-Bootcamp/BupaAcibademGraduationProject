@@ -56,25 +56,30 @@ namespace HealthInsurance.BusinessLogicLayer.Concrete.BusinessLogicLayerBase
             }
         }
 
-        public IDataResult<Task<TDto>> AddAsync(TDto entity, bool saveChanges = true)
+        public  Task<IDataResult<TDto>> AddAsync(TDto entity, bool saveChanges = true)
         {
-            try
-            {
-                var resolvedResult = " ";
-                var TResult = repository.Add(ObjectMapper.Mapper.Map<T>(entity));
-                resolvedResult = string.Join(',', TResult.GetType().GetProperties()
-                    .Select(x => $"-{x.Name}: {x.GetValue(TResult) ?? ""}-"));
-                if (saveChanges)
-                {
-                    Save();
-                }
 
-                return new SuccessDataResult<Task<TDto>>(ObjectMapper.Mapper.Map<T,Task<TDto>>(TResult), Messages.ProductAddedAsync);
-            }
-            catch (Exception)
+            return Task<IDataResult<TDto>>.Factory.StartNew(() =>
             {
-                return new ErrorDataResult<Task<TDto>>(null, Messages.ProductAddingAsycnWrong);
-            }
+                try
+                {
+                    var resolvedResult = " ";
+                    var TResult = repository.Add(ObjectMapper.Mapper.Map<T>(entity));
+                    resolvedResult = string.Join(',', TResult.GetType().GetProperties()
+                        .Select(x => $"-{x.Name}: {x.GetValue(TResult) ?? ""}-"));
+                    if (saveChanges)
+                    {
+                        Save();
+                    }
+
+                    return new SuccessDataResult<TDto>(ObjectMapper.Mapper.Map<T, TDto>(TResult),
+                        Messages.ProductAddedAsync);
+                }
+                catch (Exception)
+                {
+                    return new ErrorDataResult<TDto>(null, Messages.ProductAddingAsycnWrong);
+                }
+            });
         }
 
         public IDataResult<bool> DeleteById(int id, bool saveChanges = true)
@@ -147,9 +152,20 @@ namespace HealthInsurance.BusinessLogicLayer.Concrete.BusinessLogicLayerBase
             }
         }
 
+        //TODO : Tipin belli olduğu yerde kullanılabilir.
         public IDataResult<List<TDto>> GetAll(Expression<Func<T, bool>> expression)
         {
-            throw new NotImplementedException();
+            try
+            {
+                List<T> getAllList = repository.GetAll(expression).ToList();
+                var dtoGetAllList = getAllList.Select(x => ObjectMapper.Mapper.Map<TDto>(x)).ToList();
+                return new SuccessDataResult<List<TDto>>(dtoGetAllList, Messages.ProductsListed);
+            }
+            catch (Exception)
+            {
+                return new ErrorDataResult<List<TDto>>(Messages.ProductsNotListed);
+            }
+
         }
 
         public void Save()
