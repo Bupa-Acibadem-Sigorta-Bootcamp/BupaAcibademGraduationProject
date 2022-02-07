@@ -56,9 +56,25 @@ namespace HealthInsurance.BusinessLogicLayer.Concrete.BusinessLogicLayerBase
             }
         }
 
-        public IDataResult<Task<TDto>> AddAsync(TDto entity)
+        public IDataResult<Task<TDto>> AddAsync(TDto entity, bool saveChanges = true)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var resolvedResult = " ";
+                var TResult = repository.Add(ObjectMapper.Mapper.Map<T>(entity));
+                resolvedResult = string.Join(',', TResult.GetType().GetProperties()
+                    .Select(x => $"-{x.Name}: {x.GetValue(TResult) ?? ""}-"));
+                if (saveChanges)
+                {
+                    Save();
+                }
+
+                return new SuccessDataResult<Task<TDto>>(ObjectMapper.Mapper.Map<T,Task<TDto>>(TResult), Messages.ProductAddedAsync);
+            }
+            catch (Exception)
+            {
+                return new ErrorDataResult<Task<TDto>>(null, Messages.ProductAddingAsycnWrong);
+            }
         }
 
         public IDataResult<bool> DeleteById(int id, bool saveChanges = true)
@@ -104,7 +120,7 @@ namespace HealthInsurance.BusinessLogicLayer.Concrete.BusinessLogicLayerBase
         {
             try
             {
-                return new SuccessDataResult<TDto>(ObjectMapper.Mapper.Map<T, TDto>(repository.Find(id)),Messages.ProductListedById);
+                return new SuccessDataResult<TDto>(ObjectMapper.Mapper.Map<T, TDto>(repository.Find(id)), Messages.ProductListedById);
             }
             catch (Exception)
             {

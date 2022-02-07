@@ -36,6 +36,18 @@ namespace HealthInsurance.WebApiLayer.Controllers.ControllerBases
             return BadRequest(result);
         }
 
+        [HttpPost("AddAsync")]
+        public IActionResult AddAsync(TDto dto)
+        {
+            var result =  _service.AddAsync(dto);
+
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
         [HttpDelete("DeleteById")]
         public IActionResult DeleteById(int id)
         {

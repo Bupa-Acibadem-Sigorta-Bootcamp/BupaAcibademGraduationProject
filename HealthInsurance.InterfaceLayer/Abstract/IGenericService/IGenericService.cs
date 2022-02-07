@@ -12,7 +12,7 @@ namespace HealthInsurance.InterfaceLayer.Abstract.IGenericService
     public interface IGenericService<T, TDto> where T : IEntity where TDto : IDto
     {
         IDataResult<TDto> Add(TDto entity, bool saveChanges = true);
-        IDataResult<Task<TDto>> AddAsync(TDto entity);
+        IDataResult<Task<TDto>> AddAsync(TDto entity, bool saveChanges = true);
         IDataResult<bool> DeleteById(int id, bool saveChanges = true);
         IDataResult<Task<bool>> DeleteByIdAsync(int id);
         IDataResult<bool> Delete(TDto entity);
