@@ -74,6 +74,17 @@ namespace HealthInsurance.WebApiLayer
 
             #endregion
 
+            #region FrontEndRequest
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowOrigin",
+                    builder => builder.WithOrigins("https://localhost:44332"));
+            });
+
+            services.AddCors();
+            #endregion
+
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -90,6 +101,8 @@ namespace HealthInsurance.WebApiLayer
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "HealthInsurance.WebApiLayer v1"));
             }
+
+            app.UseCors(builder => builder.WithOrigins("http://localhost:4200").AllowAnyHeader().AllowAnyMethod());
 
             app.UseHttpsRedirection();
 
