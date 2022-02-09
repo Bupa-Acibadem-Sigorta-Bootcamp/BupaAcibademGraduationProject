@@ -15,8 +15,22 @@ namespace HealthInsurance.WebApiLayer.Controllers.Controller
     [ApiController]
     public class OrderController : BasesController<IOrderService, Order, DtoOrder>
     {
-        public OrderController(IOrderService service) : base(service)
+        private readonly IOrderService _orderService;
+        public OrderController(IOrderService service, IOrderService orderService) : base(service)
         {
+            _orderService = orderService;
+        }
+
+        [HttpGet("GetAllManagerScreens")]
+        public IActionResult GetManagerScreens()
+        {
+            var result = _orderService.GetManagerScreens();
+
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
         }
     }
 }

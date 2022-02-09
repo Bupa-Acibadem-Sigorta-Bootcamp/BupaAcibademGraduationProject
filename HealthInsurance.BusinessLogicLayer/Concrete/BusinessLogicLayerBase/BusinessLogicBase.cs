@@ -22,7 +22,7 @@ namespace HealthInsurance.BusinessLogicLayer.Concrete.BusinessLogicLayerBase
 
         private readonly IUnitOfWorkRepository unitOfWork;
         private readonly IServiceProvider service;
-        private readonly IGenericRepository<T> repository;
+        protected readonly IGenericRepository<T> repository;
 
         #endregion
 
