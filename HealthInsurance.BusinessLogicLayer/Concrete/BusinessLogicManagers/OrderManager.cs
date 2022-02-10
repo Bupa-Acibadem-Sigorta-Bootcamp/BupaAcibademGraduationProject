@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using HealthInsurance.BusinessLogicLayer.Concrete.BusinessLogicLayerBase;
 using HealthInsurance.BusinessLogicLayer.Concrete.MapperConfiguration;
+using HealthInsurance.BusinessLogicLayer.Concrete.ResultMessages;
 using HealthInsurance.EntityLayer.Abstract.IResults;
 using HealthInsurance.EntityLayer.Concrete.Dtos;
 using HealthInsurance.EntityLayer.Concrete.Models;
@@ -21,9 +22,17 @@ namespace HealthInsurance.BusinessLogicLayer.Concrete.BusinessLogicManagers
 
         public IDataResult<List<DtoGeneralManagerScreen>> GetManagerScreens()
         {
-            var result = repository.GetAll();
-            return new SuccessDataResult<List<DtoGeneralManagerScreen>>(
-                ObjectMapper.Mapper.Map<List<Order>, List<DtoGeneralManagerScreen>>(result));
+            
+            try
+            {
+                var result = repository.GetAll();
+                return new SuccessDataResult<List<DtoGeneralManagerScreen>>(
+                    ObjectMapper.Mapper.Map<List<Order>, List<DtoGeneralManagerScreen>>(result),Messages.OrdersListed);
+            }
+            catch (Exception)
+            {
+                return new ErrorDataResult<List<DtoGeneralManagerScreen>>(null, Messages.OrdersNotListed);
+            }
         }
     }
 }

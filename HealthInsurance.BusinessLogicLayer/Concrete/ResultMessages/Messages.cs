@@ -20,5 +20,7 @@ namespace HealthInsurance.BusinessLogicLayer.Concrete.ResultMessages
         public static string ProductNotListedById = "Ürün Id ile Listelenemedi!";
         public static string ProductAddedAsync = "Ürün Asenkron Eklendi.";
         public static string ProductAddingAsycnWrong = "Ürün Asenkron Eklenemedi!";
+        public static string OrdersListed = "Siparişler Listelendi.";
+        public static string OrdersNotListed = "Siparişler Listelenemedi!";
     }
 }
