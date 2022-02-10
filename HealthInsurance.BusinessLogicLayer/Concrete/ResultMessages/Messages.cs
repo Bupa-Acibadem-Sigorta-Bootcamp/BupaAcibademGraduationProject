@@ -22,5 +22,9 @@ namespace HealthInsurance.BusinessLogicLayer.Concrete.ResultMessages
         public static string ProductAddingAsycnWrong = "Ürün Asenkron Eklenemedi!";
         public static string OrdersListed = "Siparişler Listelendi.";
         public static string OrdersNotListed = "Siparişler Listelenemedi!";
+        public static string CorporateCustomerInformationListed = "Kurumsal Müşteri Bilgileri Listelendi.";
+        public static string CorporateCustomerInformationNotListed = "Kurumsal Müşteri Bilgileri Listelenemedi.";
+        public static string IndividualCustomerInformationListed = "Bireysel Müşteri Bilgileri Listelendi.";
+        public static string IndividualCustomerInformationNotListed = "Bireysel Müşteri Bilgileri Listelenemedi!";
     }
 }

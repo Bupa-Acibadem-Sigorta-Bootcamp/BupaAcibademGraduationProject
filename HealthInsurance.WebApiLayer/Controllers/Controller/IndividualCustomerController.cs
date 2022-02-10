@@ -15,8 +15,21 @@ namespace HealthInsurance.WebApiLayer.Controllers.Controller
     [ApiController]
     public class IndividualCustomerController : BasesController<IIndividualCustomerService, IndividualCustomer, DtoIndividualCustomer>
     {
-        public IndividualCustomerController(IIndividualCustomerService service) : base(service)
+        private readonly IIndividualCustomerService _individualCustomerService;
+        public IndividualCustomerController(IIndividualCustomerService service, IIndividualCustomerService individualCustomerService) : base(service)
         {
+            _individualCustomerService = individualCustomerService;
+        }
+        [HttpGet("GetAllDetailIndividualCustomer")]
+        public IActionResult GetAllDetailIndividualCustomer()
+        {
+            var result = _individualCustomerService.GetAllDetailIndividualCustomer();
+
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
         }
     }
 }
