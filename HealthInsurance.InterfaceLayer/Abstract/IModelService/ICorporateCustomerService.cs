@@ -13,5 +13,6 @@ namespace HealthInsurance.InterfaceLayer.Abstract.IModelService
     public interface ICorporateCustomerService : IGenericService<CorporateCustomer, DtoCorporateCustomer>
     {
         IDataResult<List<DtoDetailCorporateCustomer>> GetAllDetailCorporateCustomer();
+        IDataResult<DtoDetailCorporateCustomer> AddDtoDetailCorporateCustomer(DtoDetailCorporateCustomer dtoDetailCorporateCustomer, bool saveChanges = true);
     }
 }

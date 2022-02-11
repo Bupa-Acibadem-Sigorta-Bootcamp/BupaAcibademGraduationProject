@@ -32,5 +32,17 @@ namespace HealthInsurance.WebApiLayer.Controllers.Controller
             }
             return BadRequest(result);
         }
+
+        [HttpPost("AddDetailCorporateCustomer")]
+        public IActionResult GetAllDetailCorporateCustomer(DtoDetailCorporateCustomer dtoDetailCorporateCustomer)
+        {
+            var result = _corporateCustomerService.AddDtoDetailCorporateCustomer(dtoDetailCorporateCustomer);
+
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
     }
 }

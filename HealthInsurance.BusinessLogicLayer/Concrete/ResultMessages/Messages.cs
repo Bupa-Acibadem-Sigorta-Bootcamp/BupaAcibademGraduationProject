@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using HealthInsurance.EntityLayer.Abstract.IBases;
 using HealthInsurance.EntityLayer.Concrete.Bases;
+using HealthInsurance.EntityLayer.Concrete.Dtos;
 
 namespace HealthInsurance.BusinessLogicLayer.Concrete.ResultMessages
 {
@@ -28,5 +29,7 @@ namespace HealthInsurance.BusinessLogicLayer.Concrete.ResultMessages
         public static string IndividualCustomerInformationNotListed = "Bireysel Müşteri Bilgileri Listelenemedi!";
         public static string IndividualCustomerAdded = "Bireysel Müşteri Bilgileri Eklendi.";
         public static string IndividualCustomerNotAdded = "Bireysel Müşteri Bilgileri Eklenemedi!";
+        public static string CorporateCustomerNotAdded = "Kurumsal Müşteri Bilgileri Eklendi.";
+        public static string CorporateCustomerAdded = "Kurumsal Müşteri Bilgileri Eklenemedi!";
     }
 }

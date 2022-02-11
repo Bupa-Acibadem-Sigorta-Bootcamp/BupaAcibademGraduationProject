@@ -33,5 +33,27 @@ namespace HealthInsurance.BusinessLogicLayer.Concrete.BusinessLogicManagers
                 return new ErrorDataResult<List<DtoDetailCorporateCustomer>>(null, Messages.CorporateCustomerInformationNotListed);
             }
         }
+
+        public IDataResult<DtoDetailCorporateCustomer> AddDtoDetailCorporateCustomer(DtoDetailCorporateCustomer dtoDetailCorporateCustomer,
+            bool saveChanges = true)
+        {
+            try
+            {
+                var resolvedResult = " ";
+                var TResult = repository.Add(ObjectMapper.Mapper.Map<CorporateCustomer>(dtoDetailCorporateCustomer));
+                resolvedResult = string.Join(',', TResult.GetType().GetProperties()
+                    .Select(x => $"-{x.Name}: {x.GetValue(TResult) ?? ""}-"));
+                if (saveChanges)
+                {
+                    Save();
+                }
+
+                return new SuccessDataResult<DtoDetailCorporateCustomer>(ObjectMapper.Mapper.Map<CorporateCustomer, DtoDetailCorporateCustomer>(TResult), Messages.CorporateCustomerAdded);
+            }
+            catch (Exception)
+            {
+                return new ErrorDataResult<DtoDetailCorporateCustomer>(Messages.CorporateCustomerNotAdded);
+            }
+        }
     }
 }
