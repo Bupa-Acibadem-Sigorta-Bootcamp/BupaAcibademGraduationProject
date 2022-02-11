@@ -13,5 +13,6 @@ namespace HealthInsurance.InterfaceLayer.Abstract.IModelService
     public interface IIndividualCustomerService : IGenericService<IndividualCustomer, DtoIndividualCustomer>
     {
         IDataResult<List<DtoDetailIndividualCustomer>> GetAllDetailIndividualCustomer();
+        IDataResult<DtoDetailIndividualCustomer> AddDetailIndividualCustomer(DtoDetailIndividualCustomer dtoDetailIndividualCustomer, bool saveChanges = true);
     }
 }

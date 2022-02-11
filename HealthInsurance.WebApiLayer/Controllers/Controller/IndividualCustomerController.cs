@@ -31,5 +31,16 @@ namespace HealthInsurance.WebApiLayer.Controllers.Controller
             }
             return BadRequest(result);
         }
+        [HttpPost("AddDetailIndividualCustomer")]
+        public IActionResult AddDetailIndividualCustomer(DtoDetailIndividualCustomer dtoDetailIndividualCustomer)
+        {
+            var result = _individualCustomerService.AddDetailIndividualCustomer(dtoDetailIndividualCustomer);
+
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
     }
 }

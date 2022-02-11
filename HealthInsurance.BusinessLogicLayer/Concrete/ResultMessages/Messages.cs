@@ -26,5 +26,7 @@ namespace HealthInsurance.BusinessLogicLayer.Concrete.ResultMessages
         public static string CorporateCustomerInformationNotListed = "Kurumsal Müşteri Bilgileri Listelenemedi.";
         public static string IndividualCustomerInformationListed = "Bireysel Müşteri Bilgileri Listelendi.";
         public static string IndividualCustomerInformationNotListed = "Bireysel Müşteri Bilgileri Listelenemedi!";
+        public static string IndividualCustomerAdded = "Bireysel Müşteri Bilgileri Eklendi.";
+        public static string IndividualCustomerNotAdded = "Bireysel Müşteri Bilgileri Eklenemedi!";
     }
 }
