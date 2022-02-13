@@ -31,7 +31,7 @@ namespace HealthInsurance.DataAccessLayer.Concrete.EntityFramework.EfGenericRepo
         #region Methods
         public T Add(T entity)
         {
-            context.Entry(entity).State = EntityState.Added;
+            //context.Entry(entity).State = EntityState.Added;
             set.Add(entity);
             return entity;
         }
